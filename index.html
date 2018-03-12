@@ -7,19 +7,81 @@
     <title>Tim's Lame Physic Game</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 </head>
-<body>
-    <div id="game">
-        <h1>Psychic Game</h1>
-        <h3>Guess the letter that I'm randomly thinking of</h3>
-        <h4 id="round"></h4>
-        <h4 id="wins"></h4>
-        <h4 id="losses"></h4>
-        <h4 id="guessesRemn"></h4>
-        <h4 id="guessed"></h4>
-        <p>Press any letter to submit your guess</p>
+<body style="background-color:#d6d6d6">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light p-0 fluid">
+        <a class="navbar-brand p-0 m-0" style="background-color:#4682b4">
+        <h1 class="pt-2 pb-2 pl-3 pr-3 text-white">Tim's Psychic Game</h1>
+        </a>
+        <button class="navbar-toggler mr-3" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+                
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav ml-auto pr-4">
+                <li class="nav-item active">
+                    <a class="nav-link pl-4" href="index.html">About <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link pl-4" href="portfolio.html">Portfolio</a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link pl-4" href="contact.html">Contact<span class="sr-only">(current)</span></a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    
+    <div id="game" class="container mt-4">
+        <div class="row">
+            <div class="col-md-8 bg-light mr-4 pl-4 pt-4">
+                <h2 class="align-middle" style="color:steelblue">Guess the letter</h2>
+                <hr class="mt-0"/>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-8 bg-light mr-4 pl-4 pt-2">
+                <p>Press any letter key to submit your guess.</p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-8 bg-light mr-4 pl-4 pt-3">
+                <h5 class="float-left">Round:&nbsp; &nbsp;</h5><h5 id="round" style="float-right"></h5>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-8 bg-light mr-4 pl-4 pt-3">
+                <h5 class="float-left">Wins:&nbsp; &nbsp;</h5><h5 id="userWins" style="float-right"></h5>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-8 bg-light mr-4 pl-4 pt-3">
+                <h5 class="float-left">Losses:&nbsp; &nbsp;</h5><h5 id="userLosses" style="float-right"></h5>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-8 bg-light mr-4 pl-4 pt-3">
+                <h5 class="float-left">Guessed:&nbsp; &nbsp;</h5><h5 id="userGuessed" style="float-right"></h5>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-8 bg-light mr-4 pl-4 pt-2 pb-4">
+                <h5 class="float-left">Guesses Remaining:&nbsp; &nbsp;</h5><h5 id="userGuessesRemn" style="float-right"></h5>
+            </div>
+        </div>   
     </div>
             
-            
+    <footer class="footer">
+        <div class="position-fixed m-0 pt-2" style="background-color:steelblue; bottom:0; width:100vw; height:2.5rem;">
+            <span style="color:white; width:100vw; font-size:12px;" id="mine">
+                <p style="text-align:center">
+                    &#169;
+                    <script>
+                    document.write(new Date().getFullYear());
+                    </script>, Tim Stevens
+                <p>
+            </span>
+         </div>
+    </footer>           
               
 
     <script src="assets/javascript/game.js">
