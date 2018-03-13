@@ -1,91 +1,92 @@
-gameActive = true;
-round = 1;
-userWins = 0;
-userLosses = 0;
-userGuessesRemn = 5;
-userGuessed = [];
-appChoices = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t","u", "v", "w", "x", "y", "z"];
+var gameActive = true;
+var round = 1;
+var userWins = 0;
+var userLosses = 0;
+var userGuessesRemn = 5;
+var userGuessed = [];
+var appChoices = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t","u", "v", "w", "x", "y", "z"];
+var appChoice;
 appChoice = appChoices[Math.floor(Math.random() * appChoices.length)];
 console.log("appChoice " + appChoice);
 
-function gameUpdate() {
+function pageUpdate() {
     document.getElementById("round").innerHTML = round;
     document.getElementById("userWins").innerHTML = userWins;
     document.getElementById("userLosses").innerHTML = userLosses;
     document.getElementById("userGuessed").innerHTML = userGuessed;
     document.getElementById("userGuessesRemn").innerHTML = userGuessesRemn;
 };
-gameUpdate();
+pageUpdate()
 
-function gameReset() {
-    round = 1;
-    userWins = 0;
-    userLosses = 0;
-    userGuessesRemn = 5;
-    userGuessed = [];
+
+function newRound() {
     appChoice = appChoices[Math.floor(Math.random() * appChoices.length)];
     console.log("appChoice " + appChoice);
+    round++;
+    userGuessesRemn = 5;
+    userGuessed = [];
+    pageUpdate();
 };
 
-// for (var i = 10; i < 10; i++) {
-if (gameActive) {
-    document.onkeyup = function(getTheGuess) {
+
+document.onkeyup = function(getTheGuess) {
+    if (gameActive) {
         var userGuess = getTheGuess.key;
         userGuessed.push(userGuess);
-        console.log("userGuess " + userGuess);
-        userGuessesRemn = userGuessesRemn - 1;
-    
-        if (userGuess !== appChoice && userGuessesRemn > 0) {
-            gameUpdate();
+        console.log("userGuessed " + userGuessed);
+        userGuessesRemn--;
+
+        if ((userGuess !== appChoice) && (userGuessesRemn > 0)) {
+            pageUpdate();
         }
-        else if (userGuess !== appChoice && userGuessesRemn == 0) {
-            round++;
+
+        else if ((userGuess !== appChoice) && (userGuessesRemn == 0)) {
             userLosses++;
-            userGuessed = [];
-            userGuessesRemn = 5;
-            gameUpdate();
-            if (round === 10 && userWins < userLosses) {
-                confirm("Some psychic you are.");
-            }
-            else if (round === 10 && userWins > userLosses) {
-                confirm("You lost that round, but...");
-                alert("You WON the game!!!");
-                gameActive = false;
-            }
-            else if (round < 10) {
-            appChoice = appChoices[Math.floor(Math.random() * appChoices.length)];
-            console.log("appChoice " + appChoice);
-            alert("Try not to be a loser in the next round. Be the Psychic.");
-            }
-        }
-        else if (userGuess === appChoice) {
-            round++;
-            userWins++;
-            userGuessed = [];
-            userGuessesRemn = 5;
-            gameUpdate();
+            pageUpdate();
+                
             if (round < 10) {
-                appChoice = appChoices[Math.floor(Math.random() * appChoices.length)];
-                console.log("appChoice " + appChoice);
-                alert("You won that round, but every blind squirrel finds an acorn.");
+                alert("You lost that round, but keep trying.");
+                newRound();
             }
-            else if (round === 10 && userWins < userLosses) {
-                alert("You won that round, but you lost the game");
-                confirm("Some psychic you are.");
+
+            else if (round === 10) {
+                alert("You lost that round");
                 gameActive = false;
-            }
-            else if (round === 10 && userWins > userLosses) {
-                alert("You WON!!!");
-                gameActive = false;
+                    
+                if (userLosses > userWins) {
+                    alert("And you lost the game.");
+                }
+
+                else if (userLosses < userWins) {
+                    alert("But you WON the game!!");
+                }
             }
         }
-        else {
-            alert("Refresh the page to try again");
+
+        else if (userGuess === appChoice) {
+            userWins++;
+            
+            if (round < 10) {
+                alert("You won that round.");
+                newRound();
+            }
+
+            else if (round === 10) {
+                alert("You won that round");
+                gameActive = false;
+                    
+                if (userLosses > userWins) {
+                    alert("But you LOST the game!!");
+                }
+
+                else if (userLosses < userWins) {
+                    alert("And you WON the game!!");
+                }
+            }
         }
     }
+    else {
+        alert("Thanks for playing. Refresh the page to play again.");
+    }
 };
-
-
-
-
 
